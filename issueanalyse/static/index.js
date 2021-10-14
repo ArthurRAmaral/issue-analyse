@@ -4,16 +4,17 @@ button.addEventListener("click", sendTextToAnalyse);
 
 function sendTextToAnalyse(event) {
   event.preventDefault();
+
   const text = document.getElementById("text").value;
   const result = document.getElementById("result");
+
+  result.innerHTML = "Carregando..."
 
   let request = new XMLHttpRequest();
   request.open("GET", `/api/analyse/${text}`);
   request.responseType = "json";
 
   request.onload = function () {
-    result.innerHTML = "";
-
     const isBug = request.response.isBug;
     const textSended = request.response.text;
 
